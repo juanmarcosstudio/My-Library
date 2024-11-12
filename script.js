@@ -1,15 +1,17 @@
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-}
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
 
-Book.prototype.toggleRead = function() {
-  this.read = !this.read;
-};
+  toggleRead() {
+    this.read = !this.read;
+  }
+}
 
 function addBookToLibrary(title, author, pages, read) {
   const newBook = new Book(title, author, pages, read);
@@ -20,7 +22,7 @@ function addBookToLibrary(title, author, pages, read) {
 function displayBooks() {
   const libraryContainer = document.getElementById('library');
   libraryContainer.innerHTML = '';
-  
+
   myLibrary.forEach((book, index) => {
     const bookCard = document.createElement('div');
     bookCard.classList.add('book-card');
@@ -50,7 +52,7 @@ function removeBook(index) {
 
 document.getElementById('book-form').addEventListener('submit', function(event) {
   event.preventDefault();
-  
+
   const title = document.getElementById('title').value;
   const author = document.getElementById('author').value;
   const pages = document.getElementById('pages').value;
